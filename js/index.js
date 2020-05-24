@@ -46,7 +46,7 @@ function runSimulation(prisoner) {
 
             console.log(prisoner[pris_num]);
             dayNum.innerHTML = day++;
-        }, 3500*i);              
+        }, 2500*i);              
     }    
 }
 
