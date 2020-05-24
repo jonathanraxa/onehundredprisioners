@@ -1,0 +1,52 @@
+
+.cellmate_figure{
+  .head{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: black;
+  }
+  .body{
+    height: 80px;
+    width: 5px;
+    margin-top: -5%;
+    background-color: black;
+  }
+  .left_arm{
+    height: 50px;
+    width: 5px;
+    background-color: black;
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    transform: rotate(45deg);
+  }
+  .right_arm{
+    height: 50px;
+    width: 5px;
+    background-color: black;
+    position: absolute;
+    right: 30%;
+    top: 50%;
+    transform: rotate(-45deg);
+  }
+  .left_leg{
+    height: 55px;
+    width: 5px;
+    background-color: black;
+    position: absolute;
+    left: 28%;
+    top: 92%;
+    transform: rotate(45deg);
+  }
+  .right_leg{
+    height: 55px;
+    width: 5px;
+    background-color: black;
+    position: absolute;
+    right: 28%;
+    top: 92%;
+    transform: rotate(-45deg);
+  }
+}
+        

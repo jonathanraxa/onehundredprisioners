@@ -1,0 +1,16 @@
+.cellmate_figure{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 15%;
+    left: 0;    
+}
+.moving-right{
+    animation-name: go-inside-cell;
+    animation-duration: 1.5s;
+}

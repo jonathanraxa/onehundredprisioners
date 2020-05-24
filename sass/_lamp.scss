@@ -1,0 +1,26 @@
+.lamp_wrapper{
+  position: absolute; 
+  top: 0; 
+  left: 50%; 
+  transform: translateX(-50%);
+  
+  .lamp_base {
+    height: 50px;
+    width: 25px;
+    background-color: #555;
+    margin: 0 auto;
+  }
+
+  .lamp_head {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    margin: 0 auto;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 50px solid #555;
+  }
+}

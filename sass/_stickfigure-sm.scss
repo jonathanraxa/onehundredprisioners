@@ -1,0 +1,58 @@
+.cellmate_figure-mini{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100px;
+    margin: 0 auto; 
+  .head{
+      width: 10px;
+      height: 10px;
+      border-radius: 50px;
+      background-color: black;
+    }
+  .body{
+      height: 20px;
+      width: 2px;
+      margin-top: -5%;
+      background-color: black;
+    }
+  .left_arm{
+      height: 10px;
+      width: 2px;
+      background-color: black;
+      position: absolute;
+      left: 45%;
+      top: 65%;
+      transform: rotate(45deg);
+    }
+  .right_arm{
+      height: 10px;
+      width: 2px;
+      background-color: black;
+      position: absolute;
+      right: 45%;
+      top: 65%;
+      transform: rotate(-45deg);
+    }
+  .left_leg{
+      height: 10px;
+      width: 2px;
+      background-color: black;
+      position: absolute;
+      left: 45%;
+      top: 92%;
+      transform: rotate(45deg);
+    }
+  .right_leg{
+      height: 10px;
+      width: 2px;
+      background-color: black;
+      position: absolute;
+      right: 45%;
+      top: 92%;
+      transform: rotate(-45deg);
+    }
+}
+       

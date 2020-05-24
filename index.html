@@ -1,361 +1,76 @@
-<style>
-.lamp_base {
-  height: 50px;
-  width: 25px;
-  background-color: #555;
-  margin: 0 auto;
-}
-.lamp_head {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    margin: 0 auto;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 50px solid #555;
-}
-.prison_cell{
-    border: 2px solid #000;
-    width: 70%;
-    height: 20rem;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-.light_on{
-    background-color: #ffff004d;
-}
-.cellmate_figure{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100px;
-    margin: 0 auto;
-    position: absolute;
-    bottom: 15%;
-    left: 0;
-    animation-name: move-right;
-    animation-duration: 5s;
-}
-.head{
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  background-color: black;
-}
-.body{
-  height: 80px;
-  width: 5px;
-  margin-top: -5%;
-  background-color: black;
-}
-.left_arm{
-  height: 50px;
-  width: 5px;
-  background-color: black;
-  position: absolute;
-  left: 30%;
-  top: 50%;
-  transform: rotate(45deg);
-}
-.right_arm{
-  height: 50px;
-  width: 5px;
-  background-color: black;
-  position: absolute;
-  right: 30%;
-  top: 50%;
-  transform: rotate(-45deg);
-}
-.left_leg{
-  height: 55px;
-  width: 5px;
-  background-color: black;
-  position: absolute;
-  left: 28%;
-  top: 92%;
-  transform: rotate(45deg);
-}
-.right_leg{
-  height: 55px;
-  width: 5px;
-  background-color: black;
-  position: absolute;
-  right: 28%;
-  top: 92%;
-  transform: rotate(-45deg);
-}
-.cellmate_figure-mini{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100px;
-    margin: 0 auto;    
-}
-.cellmate_figure-mini .head{
-  width: 10px;
-  height: 10px;
-  border-radius: 50px;
-  background-color: black;
-}
-.cellmate_figure-mini .body{
-  height: 20px;
-  width: 2px;
-  margin-top: -5%;
-  background-color: black;
-}
-.cellmate_figure-mini .left_arm{
-  height: 10px;
-  width: 2px;
-  background-color: black;
-  position: absolute;
-  left: 45%;
-  top: 50%;
-  transform: rotate(45deg);
-}
-.cellmate_figure-mini .right_arm{
-  height: 10px;
-  width: 2px;
-  background-color: black;
-  position: absolute;
-  right: 45%;
-  top: 50%;
-  transform: rotate(-45deg);
-}
-.cellmate_figure-mini .left_leg{
-  height: 10px;
-  width: 2px;
-  background-color: black;
-  position: absolute;
-  left: 45%;
-  top: 92%;
-  transform: rotate(45deg);
-}
-.cellmate_figure-mini .right_leg{
-  height: 10px;
-  width: 2px;
-  background-color: black;
-  position: absolute;
-  right: 45%;
-  top: 92%;
-  transform: rotate(-45deg);
-}
-.row{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 7rem;
-}
-@keyframes move-right {
-    0% {
-        left: 0%;
-    }
-    50% {
-        left: 18%;
-    }
-    100% {
-        left: 0%;
-    }
-}
-.light_switch{
-    position: absolute;
-    left: 10%;
-    top: 50%;
-    width:15px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #000;
-}
-.light_switch--inner{
-    width: 3px;
-    height: 8px;
-    background-color: #000;
-}
-</style>
-<div class="container" style="display: flex; flex-direction: column; align-items: center;">
-    <div class="description" style="margin: 0 auto; text-align: center; width: 50%; padding: 1rem; background-color: #e8e8e8;border-radius: 15px;">
-        <h1>100 Prisoners</h1>
-        <p>100 prisoners are sentenced to life in prison in solitary confinement. Upon arrival at the prison, the warden proposes a deal to keep them entertained, certain that the prisoners are too dim-witted and impatient to accomplish it.</p>
-        <p>The warden has a large bowl containing the cell numbers of all the prisoners. Each day he randomly chooses one cell from the bowl, the corresponding prisoner is taken to the interrogation room, and the cell number is returned to the bowl.</p>
-        <p>While in the interrogation room, the prisoner will not be allowed to touch anything except the light switch, which the prisoner may choose to turn on or off.</p>
-        <p>The prisoner may make the assertion that all 100 prisoners have been in the room. If the prisoner’s assertion is correct, all prisoners will be released. If the prisoner is incorrect, the game is over and their chance to be freed is gone.</p>
-        <p>The prisoners are given one meeting to discuss a strategy before their communication is completely severed. What strategy should they adopt in order to ensure, with 100% certainty, that one of them will guess correctly and all be freed?</p>
-        <p>The initial state of the light is OFF when the first prisoner enters the room.</p>
-           <button style="
-           border-radius: 30px;
-            padding: 1rem;
-            background-color: #3c3c3c;
-            color: white;
-            text-transform: uppercase;
-            outline: none;
-            cursor: pointer;
-            font-weight: bold;
-           ">see it in action</button>
-    </div>
-    <div style="clear: both; margin: 1rem auto"></div>
-    <div class="answer" style="position: relative; width: 100%;">
-        <div class="prison_cell light_on">
-            <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%);">
-                <div class="lamp_cont" style="position: relative;">
-                    <div class="lamp_base"></div>
-                    <div class="lamp_head"></div>
-  
-                </div>
-            </div>
-            
-            <div class="bed"></div>
-            <div class="light_switch">
-                <div class="light_switch--inner">
-
-                </div>
-            </div>
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">     
+        <title>One Hundred Prisoners Riddle</title>
+    </head>
+  <body>
+    <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+        <div class="description" style="margin: 0 auto; text-align: center; width: 50%; padding: 1rem; background-color: #e8e8e8;border-radius: 15px;">
+            <h1>100 Prisoners</h1>
+            <p>100 prisoners are sentenced to life in prison in solitary confinement. Upon arrival at the prison, the warden proposes a deal to keep them entertained, certain that the prisoners are too dim-witted and impatient to accomplish it.</p>
+            <p>The warden has a large bowl containing the cell numbers of all the prisoners. Each day he randomly chooses one cell from the bowl, the corresponding prisoner is taken to the interrogation room, and the cell number is returned to the bowl.</p>
+            <p>While in the interrogation room, the prisoner will not be allowed to touch anything except the light switch, which the prisoner may choose to turn on or off.</p>
+            <p>The prisoner may make the assertion that all 100 prisoners have been in the room. If the prisoner’s assertion is correct, all prisoners will be released. If the prisoner is incorrect, the game is over and their chance to be freed is gone.</p>
+            <p>The prisoners are given one meeting to discuss a strategy before their communication is completely severed. What strategy should they adopt in order to ensure, with 100% certainty, that one of them will guess correctly and all be freed?</p>
+            <p>The initial state of the light is OFF when the first prisoner enters the room.</p>
+              <button class="answer_button">answer</button>
         </div>
-
-
-        <div class="cellmate_figure">
-            <div class="head"></div>
-            <div class="body"></div>
-            <div class="left_arm"></div>
-            <div class="right_arm"></div>
-            <div class="left_leg"></div>
-            <div class="right_leg"></div>
-        </div>
-            
         
-    </div>
+        <div style="clear: both; margin: 1rem auto"></div>
+        <div class="answer_description">
+          <div>
+            <p>Instead of having 100, let's break it down to only 10 prisoners.</p>
+            <p>
+              <ol>
+                <li>Prisoners get together and choose ONE person to be the counter. Easiest is the first person. Let's call him Jonny.</li>
+                <li>When Jonny first enters the room, he knows with absolute certainty that he's the first to enter the room. He turns ON the light, indicating that at least one person as entered the room.</li>
+                <li>On the next day, let's say someone else enters the room let's call him Larry. Obviously, Larry has never entered the room. Upon entering, he sees the light is ON, so he turns it off.</li>
+                <li>Now let's say Jonny enters again on the third day. Once he notices that the room light is OFF, he knows with absolute certainty that someone else has been inside this room. Thus, he adds to his count and turns the light back ON.</li>
+                <li>If the next day, Larry coincidentally ends up going back into the room, he'll see that the light is on. Because Larry has already been inside the room, he keeps the light ON instead of turning in on like he initially did when he first entered the room.</li>
+                <li>The other prisoners will follow the same format as Larry. OFF will indicate to Jonny that someone unique has been in the room, whereas the ON state will indicate that someone has already been inside the room.</li>
+                <li>Finally, once Jonny counts at least 100 OFF states, including his own, he knows with 100% certainty that all the prisoners have been inside the cell.</li>
+              </ol>
+            </p>            
+          </div>
+        </div>
+  
+        <div style="clear: both; margin: 1rem auto"></div>
 
-    <div class="explained">
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
-      <div class="row">
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-         <div class="cellmate_figure-mini"><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
-      </div>
+        <div class="answer_animation">
+            <div class="prison_cell">
+                <div class="lamp_wrapper">
+                    <div class="lamp_cont" style="position: relative;">
+                        <div class="lamp_base"></div>
+                        <div class="lamp_head"></div>      
+                    </div>
+                </div>                                             
+                <div class="light_switch"><div class="light_switch--inner"></div></div>
+                
+                <div class="day_num">Day #: <span id="day_num">1</span></div>
+                <div class="unique_num">Unique #: <span id="unique_num">1</span></div>
+                
+            </div>
+            <!-- stick figure prisoner -->
+            <div class="cellmate_figure"><div id="prisoner_name"></div><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>                            
+        </div>
+
+        <div class="explained">
+          <div class="row">
+            <div class="cellmate_figure-mini"><div class="nameOfPrisoner">Jonny</div><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
+            <div class="cellmate_figure-mini"><div class="nameOfPrisoner">Larry</div><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
+            <div class="cellmate_figure-mini"><div class="nameOfPrisoner">Harry</div><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
+            <div class="cellmate_figure-mini"><div class="nameOfPrisoner">Fairy</div><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
+            <div class="cellmate_figure-mini"><div class="nameOfPrisoner">Terry</div><div class="head"></div><div class="body"></div><div class="left_arm"></div><div class="right_arm"></div><div class="left_leg"></div><div class="right_leg"></div></div>
+          </div>       
+        </div>
     </div>
-</div>
+  </body>
+
+  <script src="js/index.js"></script>
+
+</html>
